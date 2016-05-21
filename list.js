@@ -1,4 +1,7 @@
-function List() {
+(function () {
+  'use strict';
+
+  function List() {
     this.listSize = 0;
     this.pos = 0;
     this.dataStore = [];
@@ -16,117 +19,118 @@ function List() {
     this.next = next;
     this.length = length;
     this.contains = contains;
-}
+  }
 
-function currPos() {
+  function currPos() {
     return this.pos;
-}
+  }
 
-function getElement() {
+  function getElement() {
     return this.dataStore[this.pos];
-}
+  }
 
-function clear() {
+  function clear() {
     delete this.dataStore;
     this.dataStore = [];
     this.listSize = this.pos = 0;
-}
+  }
 
-function find(element) {
+  function find(element) {
     for (var i = 0; i < this.dataStore.length; ++i) {
-        if (this.dataStore[i] === element) {
-            return i;
-        }
+      if (this.dataStore[i] === element) {
+        return i;
+      }
     }
     return -1;
-}
+  }
 
-function toString() {
+  function toString() {
     return this.dataStore;
-}
+  }
 
-function insert(element, after) {
+  function insert(element, after) {
     var insertPos = this.find(after);
     if (insertPos > -1) {
-        this.dataStore.splice(insertPos + 1, 0, element);
-        ++this.listSize;
-        return true;
+      this.dataStore.splice(insertPos + 1, 0, element);
+      ++this.listSize;
+      return true;
     }
     return false;
-}
+  }
 
-function append(element) {
+  function append(element) {
     this.dataStore[this.listSize++] = element;
-}
+  }
 
-function remove(element) {
+  function remove(element) {
     var foundAt = this.find(element);
     if (foundAt > -1) {
-        this.dataStore.splice(foundAt, 1);
-        --this.listSize;
-        return true;
+      this.dataStore.splice(foundAt, 1);
+      --this.listSize;
+      return true;
     }
     return false;
-}
+  }
 
-function front() {
+  function front() {
     this.pos = 0;
-}
+  }
 
-function end() {
+  function end() {
     this.pos = this.listSize - 1;
-}
+  }
 
-function prev() {
+  function prev() {
     if (this.pos > 0) {
-        --this.pos;
+      --this.pos;
     }
-}
+  }
 
-function next() {
+  function next() {
     if (this.pos < this.listSize - 1) {
-        ++this.pos;
+      ++this.pos;
     }
-}
+  }
 
-function moveTo(position) {
+  function moveTo(position) {
     this.pos = position;
-}
+  }
 
-function length() {
+  function length() {
     return this.listSize;
-}
+  }
 
-function contains(element) {
+  function contains(element) {
     for (var i = 0; i < this.dataStore.length; ++i) {
-        if (this.dataStore[i] === element) {
-            return true;
-        }
+      if (this.dataStore[i] === element) {
+        return true;
+      }
     }
     return false;
-}
+  }
 
-var names = new List();
+  var names = new List();
 
-names.append('Clayton');
-names.append('Cynthia');
-names.append('Raymond');
-names.append('Barbara');
-names.append('Jennifer');
-names.append('Bryan');
-names.append('Danny');
+  names.append('Clayton');
+  names.append('Cynthia');
+  names.append('Raymond');
+  names.append('Barbara');
+  names.append('Jennifer');
+  names.append('Bryan');
+  names.append('Danny');
 
-names.front();
-console.log(names.getElement());
+  names.front();
+  console.log(names.getElement());
 
-names.next();
-console.log(names.getElement());
+  names.next();
+  console.log(names.getElement());
 
-names.next();
-names.next();
-names.prev();
-console.log(names.getElement());
+  names.next();
+  names.next();
+  names.prev();
+  console.log(names.getElement());
 
-console.log(names.toString());
-names.remove('Raymond');
-console.log(names.toString());
+  console.log(names.toString());
+  names.remove('Raymond');
+  console.log(names.toString());
+}());
